@@ -8,8 +8,34 @@
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 </head>
 <body>
-    <button hx-get="https://trails.apps.fourscorepicks.com/trails" hx-target="#fill-me-up">Trails</button>
+    <button id="TrailsBtn" onclick="fetchTrails()">Trails</button>
     <button hx-post="https://trails.apps.fourscorepicks.com/trails/sync" hx-target="#fill-me-up">Sync Trails</button>
     <div id="fill-me-up"></div>
+    
+    <script type="application/javascript">
+        function fetchTrails() {
+            fetch('https://trails.apps.fourscorepicks.com/trails')
+                .then(res => res.json())
+                .then((out) => {
+                    var html = `<table>
+                        <thead>
+                            <th>Name</th>
+                            <th>Forest</th>
+                        </thead>`;
+                    
+                    for(var i=0; i<out.length; i++) {
+                        html = html +
+                        `<tr>
+                            <td>${out[i].name}</td>
+                            <td>${out[i].stateForestName}</td>
+                        </tr>`;
+                    }
+
+                    html = html + '</table>';
+                    document.querySelector('#fill-me-up').innerHTML = html;
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
 </body>
 </html>
