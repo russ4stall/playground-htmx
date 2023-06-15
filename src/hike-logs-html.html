@@ -1,0 +1,39 @@
+<div class="row">
+    <h1 class="col"><i class="bi bi-tree"></i> Hike Logs</h1>
+</div>
+<hr>
+<div class="row">
+    <div class="col-5">
+        <form hx-post="https://trails.apps.fourscorepicks.com/hike-logs"
+            hx-target="#HikeLogsTable tbody"
+            hx-swap="beforeend">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" name="name">
+                <label for="name">Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="trail" name="trail">
+                <label for="trail">Trail</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="length" name="length">
+                <label for="length">Length</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="reset" class="btn btn-warning">Reset</button>
+        </form>
+    </div>
+    <div class="col-7">
+        <table id="HikeLogsTable" class="table">
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Trail</th>
+                <th>Length</th>
+            </thead>
+            <tbody hx-get="https://trails.apps.fourscorepicks.com/hike-logs" hx-trigger="load">
+
+            </tbody>
+        </table>
+    </div>
+</div>

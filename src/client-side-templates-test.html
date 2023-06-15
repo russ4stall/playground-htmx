@@ -1,0 +1,30 @@
+<div hx-ext="client-side-templates">
+    <div class="row">
+        <div class="col">
+            <div class="btn-group" role="group">
+                <button class="btn btn-outline-primary"
+                    hx-get="https://trails.apps.fourscorepicks.com/trails"
+                    hx-swap="innerHTML"
+                    hx-target="#trails-content"
+                    handlebars-template="trails-list">
+                    List Group
+                </button>
+                <button class="btn btn-outline-primary"
+                    hx-get="https://trails.apps.fourscorepicks.com/trails"
+                    hx-swap="innerHTML"
+                    hx-target="#trails-content"
+                    handlebars-template="trails-table">
+                    Table
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6" id="trails-content"></div>
+    </div>
+
+</div>
+<script src="templates/trail-list-item.js"></script>
+<script src="templates/trails-list.js"></script>
+<script src="templates/trails-table.js"></script>
