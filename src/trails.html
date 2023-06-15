@@ -1,98 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hell0 Wurld</title>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
-</head>
-<body data-bs-theme="dark" >
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col">
-                <button class="btn btn-warning" id="TrailsBtn" onclick="fetchTrails()">
-                    <i class="bi bi-activity"></i> Trails
-                </button>
-                <button class="btn btn-warning"
-                    hx-post="https://trails.apps.fourscorepicks.com/trails/sync"
-                    hx-target="#ToastBody"
-                    hx-confirm="Are you sure you want to sync trail data?">
-                    Sync Trails
-                    <div class="spinner-border spinner-border-sm htmx-indicator" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </button>
+<div class="row">
+    <div class="col">
+        <button class="btn btn-warning" id="TrailsBtn" onclick="fetchTrails()">
+            <i class="bi bi-activity"></i> Trails
+        </button>
+        <button class="btn btn-warning"
+            hx-post="https://trails.apps.fourscorepicks.com/trails/sync"
+            hx-target="#ToastBody"
+            hx-confirm="Are you sure you want to sync trail data?">
+            Sync Trails
+            <div class="spinner-border spinner-border-sm htmx-indicator" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
-        </div>
+        </button>
+    </div>
+</div>
 
-        <div class="row">
-            <div class="col">
-                <div id="fill-me-up"></div>
-            </div>
-        </div>
+<div class="row">
+    <div class="col">
+        <div id="fill-me-up"></div>
+    </div>
+</div>
 
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="LiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-              <div class="toast-header">
-                <i class="bi bi-activity text-success"></i>
-                <strong class="me-auto">Trails</strong>
-                <small>You did it...</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-              <div id="ToastBody" class="toast-body">
-                Hello, world! This is a toast message.
-              </div>
-            </div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="LiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <i class="bi bi-activity text-success"></i>
+        <strong class="me-auto">Trails</strong>
+        <small>You did it...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id="ToastBody" class="toast-body">
+        Hello, world! This is a toast message.
         </div>
     </div>
+</div>
 
-    
-    
-    <script type="application/javascript">
-        // Show toasts
-        document.body.addEventListener('htmx:afterSwap', function(evt) {
-            console.log(evt.detail.target);
 
-            // if (evt.detail.elt.hasAttribute('toast')) {
-            //     document.querySelector('#ToastBody').innerHTML = evt.detail.xhr.response
-            // }
-            const toastLiveExample = document.getElementById('LiveToast');
-            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-            toastBootstrap.show()
-        });
 
-        function fetchTrails() {
-            fetch('https://trails.apps.fourscorepicks.com/trails')
-                .then(res => res.json())
-                .then((out) => {
-                    var html = `<table class="table">
-                        <thead>
-                            <th>Name</th>
-                            <th>Forest</th>
-                            <th>Length</th>
-                            <th></th>
-                        </thead>`;
-                    
-                    for(var i=0; i<out.length; i++) {
-                        html = html +
-                        `<tr>
-                            <td>${out[i].name}</td>
-                            <td>${out[i].stateForestName}</td>
-                            <td>${out[i].length}</td>
-                            <td>${JSON.stringify(out[i])}</td>
-                        </tr>`;
-                    }
+<script type="application/javascript">
+    // Show toasts
+    document.body.addEventListener('htmx:afterSwap', function(evt) {
+        console.log(evt.detail.target);
 
-                    html = html + '</table>';
-                    document.querySelector('#fill-me-up').innerHTML = html;
-                })
-                .catch(err => console.error(err));
-        }
-    </script>
-</body>
-</html>
+        // if (evt.detail.elt.hasAttribute('toast')) {
+        //     document.querySelector('#ToastBody').innerHTML = evt.detail.xhr.response
+        // }
+        const toastLiveExample = document.getElementById('LiveToast');
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        toastBootstrap.show()
+    });
+
+    function fetchTrails() {
+        fetch('https://trails.apps.fourscorepicks.com/trails')
+            .then(res => res.json())
+            .then((out) => {
+                var html = `<table class="table">
+                    <thead>
+                        <th>Name</th>
+                        <th>Forest</th>
+                        <th>Length</th>
+                        <th></th>
+                    </thead>`;
+                
+                for(var i=0; i<out.length; i++) {
+                    html = html +
+                    `<tr>
+                        <td>${out[i].name}</td>
+                        <td>${out[i].stateForestName}</td>
+                        <td>${out[i].length}</td>
+                        <td>${JSON.stringify(out[i])}</td>
+                    </tr>`;
+                }
+
+                html = html + '</table>';
+                document.querySelector('#fill-me-up').innerHTML = html;
+            })
+            .catch(err => console.error(err));
+    }
+</script>
