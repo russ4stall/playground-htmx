@@ -30,11 +30,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div id="ToastBody" class="toast-body">
-        Hello, world! This is a toast message.
+            Hello, world! This is a toast message.
         </div>
     </div>
 </div>
-
 
 
 <script type="application/javascript">
@@ -49,32 +48,4 @@
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
         toastBootstrap.show()
     });
-
-    function fetchTrails() {
-        fetch('https://trails.apps.fourscorepicks.com/trails')
-            .then(res => res.json())
-            .then((out) => {
-                var html = `<table class="table">
-                    <thead>
-                        <th>Name</th>
-                        <th>Forest</th>
-                        <th>Length</th>
-                        <th></th>
-                    </thead>`;
-                
-                for(var i=0; i<out.length; i++) {
-                    html = html +
-                    `<tr>
-                        <td>${out[i].name}</td>
-                        <td>${out[i].stateForestName}</td>
-                        <td>${out[i].length}</td>
-                        <td>${JSON.stringify(out[i])}</td>
-                    </tr>`;
-                }
-
-                html = html + '</table>';
-                document.querySelector('#fill-me-up').innerHTML = html;
-            })
-            .catch(err => console.error(err));
-    }
 </script>
