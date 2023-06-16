@@ -1,0 +1,30 @@
+<form hx-post="https://trails.apps.fourscorepicks.com/api/hike-logs"
+    hx-ext='json-enc, handle-form, client-side-templates'
+    hx-target="#HikeLogsTable tbody"
+    hx-swap="beforeend"
+    handlebars-template="hike-log-row"
+    hx-handle-form>
+<div class="modal-header">
+    <h1 class="modal-title fs-5">Add Hike</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="name" name="name" autofocus="true">
+        <label for="name">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="trail" name="trail">
+        <label for="trail">Trail</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="length" name="length">
+        <label for="length">Length</label>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+</div>
+</form>

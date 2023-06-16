@@ -1,4 +1,4 @@
-const trailsTableTemplate = `
+Handlebars.registerPartial('trails-table', Handlebars.compile(`
 <table class="table">
     <thead>
         <th>Name</th>
@@ -15,7 +15,4 @@ const trailsTableTemplate = `
         {{/each}}
     </tbody>
 </table>
-`;
-
-
-Handlebars.registerPartial('trails-table', Handlebars.compile(trailsTableTemplate));
+`));

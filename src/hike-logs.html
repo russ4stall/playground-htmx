@@ -3,38 +3,39 @@
         <div class="col">
             <h1>Hike Logs</h1>
         </div>
+        <div class="col">
+            <button type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalContainer"
+                hx-get="create-hike-log-form"
+                hx-target="#modalContainer .modal-content"
+                >
+                Add Hike
+            </button>
+        </div>
     </div>
     <div class="row">
-        <div class="col-5">
-            <form hx-post="https://trails.apps.fourscorepicks.com/api/hike-logs"
-                hx-ext='json-enc, reset-on-success'
-                hx-target="#HikeLogsTable tbody"
-                hx-swap="beforeend"
-                handlebars-template="hike-log-row"
-                hx-reset-on-success
-            >
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" name="name">
-                <label for="name">Name</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="trail" name="trail">
-                <label for="trail">Trail</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="length" name="length">
-                <label for="length">Length</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="reset" class="btn btn-warning">Reset</button>
-        </form>
-        </div>
         <div class="col-7" 
             hx-get="https://trails.apps.fourscorepicks.com/api/hike-logs"
             handlebars-template="hike-logs-table"
             hx-trigger="load">
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            
+        </div>
+    </div>
 </div>
+
+<div class="modal fade" id="modalContainer" tabindex="-1" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+<!-- <script src="templates/edit-hike-log-form.js"></script>
 <script src="templates/hike-log-row.js"></script>
-<script src="templates/hike-logs-table.js"></script>
+<script src="templates/hike-logs-table.js"></script> -->

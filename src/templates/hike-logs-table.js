@@ -1,10 +1,11 @@
-new HandlebarsPartial("hike-logs-table", `
+new HxComponent("hike-logs-table", `
     <table id="HikeLogsTable" class="table">
         <thead>
             <th>Id</th>
             <th>Name</th>
             <th>Trail</th>
             <th>Length</th>
+            <th></th>
         </thead>
         <tbody>
             {{#each this as |hikeLog|}}
