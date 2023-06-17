@@ -1,4 +1,4 @@
-Handlebars.registerPartial('bs-modal', Handlebars.compile(`
+new HxComponent('bs-modal', `
 <div class="modal fade" id="modalContainer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -16,5 +16,4 @@ Handlebars.registerPartial('bs-modal', Handlebars.compile(`
         </div>
     </div>
 </div>
-
-`));
+`);

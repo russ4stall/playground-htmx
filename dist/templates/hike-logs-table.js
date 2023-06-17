@@ -1,5 +1,5 @@
 new HxComponent("hike-logs-table", `
-    <table id="HikeLogsTable" class="table">
+    <table id="HikeLogsTable" class="table table-bordered border-primary">
         <thead>
             <th>Id</th>
             <th>Name</th>

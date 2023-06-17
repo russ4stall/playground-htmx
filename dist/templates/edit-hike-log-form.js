@@ -1,4 +1,4 @@
-Handlebars.registerPartial('edit-hike-log-form', Handlebars.compile(`
+new HxComponent('edit-hike-log-form', `
 <form hx-put="https://trails.apps.fourscorepicks.com/api/hike-logs/{{id}}"
     hx-ext='json-enc, handle-form, client-side-templates'
     hx-target="#hikeLogRow{{id}}"
@@ -32,4 +32,4 @@ Handlebars.registerPartial('edit-hike-log-form', Handlebars.compile(`
 </div>
 </form>
 
-`));
+`);

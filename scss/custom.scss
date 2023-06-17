@@ -1,0 +1,42 @@
+
+
+@import "../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+
+$primary: #729EA1;
+//$secondary
+$success: #B5BD89;
+$info: #EC9192;
+$warning: #DFBE99;
+$danger: #DB5375;
+//$light
+//$dark
+
+/*! `Tequila` Bootstrap 5 theme */
+//@import url(https://fonts.googleapis.com/css?family=Voltaire:200,300,400,700);
+//$headings-font-family:Voltaire;
+
+$enable-grid-classes:false;
+$primary:#2F414A;
+$secondary:#F47B53;
+$success:#420084;
+$danger:#f2460d;
+$info:#7ebcfa;
+$warning:#ff9933;
+$light:#eef0f2;
+$dark:#000633;
+$enable-rounded:false;
+$border-radius-pill:0rem;
+
+// Add SASS theme customizations here..
+
+$border-radius:  0;
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+//$font-family-sans-serif: 'Kanit', sans-serif;
+$headings-font-family:'Kanit', sans-serif;
+
+$modal-content-border-radius:   0;
+
+
+@import "../node_modules/bootstrap/scss/bootstrap";

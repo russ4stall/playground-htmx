@@ -1,4 +1,6 @@
 window.onload = (event) => {
+  htmx.config.getCacheBusterParam = true;
+
   handleRoute();
 };
 
@@ -7,22 +9,10 @@ function handleRoute() {
   // Get appropriate html (include HX-Request header)
   var url = new URL(document.location);
   var path = "/home"
-  if (url.pathname != "/") {
+  if (url.pathname != "/")
     path = url.pathname;
-  }
-  var mainContainer = document.getElementById('content');
 
-  //TODO: check for HB partial otherwise, HTML req
-  const req = new XMLHttpRequest();
-  req.addEventListener("load", function () {
-    mainContainer.innerHTML = this.responseText;
-    htmx.process(mainContainer.firstChild);
-  });
-  req.open("GET", path);
-  req.setRequestHeader("HX-Request", "true");
-  req.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
-  req.send();
-
+  htmx.ajax('GET', path, '#content');
 }
 
 class HxComponent {
@@ -31,6 +21,7 @@ class HxComponent {
       this.template = template;
       this.renderTemplate = Handlebars.compile(this.template);
       Handlebars.registerPartial(this.templateName, this.renderTemplate);
+      console.log(`Registered partial: ${this.templateName}`);
     }
 }
 
@@ -48,4 +39,32 @@ function postTheToast(successful, headerMain, headerSecondary, body) {
     const toastElem = document.querySelector("#toastContainer .toast");
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastElem);
     toastBootstrap.show();
+}
+
+function fetchTrails() {
+  fetch('https://trails.apps.fourscorepicks.com/trails')
+      .then(res => res.json())
+      .then((out) => {
+          var html = `<table class="table">
+              <thead>
+                  <th>Name</th>
+                  <th>Forest</th>
+                  <th>Length</th>
+                  <th></th>
+              </thead>`;
+          
+          for(var i=0; i<out.length; i++) {
+              html = html +
+              `<tr>
+                  <td>${out[i].name}</td>
+                  <td>${out[i].stateForestName}</td>
+                  <td>${out[i].length}</td>
+                  <td>${JSON.stringify(out[i])}</td>
+              </tr>`;
+          }
+
+          html = html + '</table>';
+          document.querySelector('#fill-me-up').innerHTML = html;
+      })
+      .catch(err => console.error(err));
 }

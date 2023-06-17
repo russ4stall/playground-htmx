@@ -1,4 +1,4 @@
-Handlebars.registerPartial('toast-alert', Handlebars.compile(`
+new HxComponent('toast-alert', `
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
         {{#if successful}}
@@ -15,4 +15,4 @@ Handlebars.registerPartial('toast-alert', Handlebars.compile(`
         {{body}}
     </div>
 </div>
-`));
+`);

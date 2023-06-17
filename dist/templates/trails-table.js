@@ -1,4 +1,4 @@
-Handlebars.registerPartial('trails-table', Handlebars.compile(`
+new HxComponent('trails-table', `
 <table class="table">
     <thead>
         <th>Name</th>
@@ -15,4 +15,4 @@ Handlebars.registerPartial('trails-table', Handlebars.compile(`
         {{/each}}
     </tbody>
 </table>
-`));
+`);

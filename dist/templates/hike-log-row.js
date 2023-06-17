@@ -1,4 +1,4 @@
-Handlebars.registerPartial('hike-log-row', Handlebars.compile(`
+new HxComponent('hike-log-row', `
 <tr id="hikeLogRow{{id}}">
     <td>{{id}}</td>
     <td>{{name}}</td>
@@ -25,4 +25,4 @@ Handlebars.registerPartial('hike-log-row', Handlebars.compile(`
         </a>
     </td>
 </tr>
-`));
+`);
